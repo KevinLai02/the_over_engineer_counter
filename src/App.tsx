@@ -2,19 +2,18 @@ import React, { useState, useRef } from 'react';
 
 function App() {
   const [number, setNumber] = useState<number>(0)
-  const codeRef = useRef<string>('')
+  const konamiCodeRef = useRef<string>('')
   const winAudio = new Audio("/audios/win.mp3")
 
   const checkKonamiCode = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    codeRef.current += e.key
-    const isCorrect = codeRef.current.indexOf('ArrowUpArrowUpArrowDownArrowDownArrowLeftArrowRightArrowLeftArrowRightba')
-    console.log(isCorrect);
-    console.log(codeRef.current);
+    konamiCodeRef.current += e.key
+    const isCorrect = konamiCodeRef.current.indexOf('ArrowUpArrowUpArrowDownArrowDownArrowLeftArrowRightArrowLeftArrowRightba')
     
-    if (isCorrect > -1) {
+    if (isCorrect !== -1) {
+      setNumber(1337)
       winAudio.play()
       alert("You win the life!!")
-      codeRef.current = ''
+      konamiCodeRef.current = ''
     }
     
   }
